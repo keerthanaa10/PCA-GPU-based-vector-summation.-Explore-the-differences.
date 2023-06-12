@@ -18,7 +18,7 @@ ii) Refer to sumArraysOnGPU-timer.cu, and let block.x = 256. Make a new kernel t
 5.Launch a CUDA kernel to perform vector addition on the device.
 
 ## Program:
-1. i)Block.x=1023
+**1. i)Block.x=1023**
 
 #include "common.h" 
 #include <cuda_runtime.h> 
@@ -149,7 +149,7 @@ free(gpuRef);
 return(0);
 
 
-ii) Block.x=1024
+**ii) Block.x=1024
 
 #include "common.h" 
 #include <cuda_runtime.h> 
