@@ -149,7 +149,7 @@ free(gpuRef);
 return(0);
 
 
-**ii) Block.x=1024
+**ii) Block.x=1024**
 
 #include "common.h" 
 #include <cuda_runtime.h> 
@@ -287,14 +287,14 @@ return(0);
 }
 
 
-Differences:
+**Differences:**
 • The difference between the execution configurations with block.x = 1023 and block.x = 1024 is the number of threads per block. When block.x = 1023, there are a total of 16,694 threads (16401 blocks x 1023 threads per block), while with block.x = 1024, there are 16,777,216 threads (16384 blocks x 1024 threads per block). This means that with block.x = 1024, the total number of threads is much higher than with block.x = 1023.
 • In terms of performance, the difference between these two configurations is not significant.The execution time of the kernel function sumArraysOnGPU is slightly faster with block.x compared to block.x, but the difference is small.
 • The reason why the performance difference is small is because the number of threads that can be run in parallel is limited by the hardware resources of the GPU. In this case, the number of threads per block is already high enough that adding more threads does not result in a significant improvement in performance. Additionally, with block.x = 1024, there are fewer blocks, which can lead to underutilization of the GPU's resources.
 • Overall, the performance difference between these two configurations is not significant, and the optimal configuration may depend on the specific hardware and workload.
 
 
-2. Block.x=256
+**2. Block.x=256**
 #include "common.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
@@ -429,7 +429,7 @@ free(gpuRef);
 return(0);
 }
 
-Differences:
+**Differences:**
 • By changing the block size from 128 to 256, the number of blocks needed to process the same amount of data was halved, from 65536 to 32768. However, since each thread now handles two elements instead of one, the total number of threads needed remains the same, which is equal to the product of the number of blocks and the block size.
 • The execution time for the kernel sumArraysOnGPU-timer decreased when the block size was changed from 128 to 256. This suggests that the optimal block size may lie between these two values.
 • It is important to note that the execution time for sumArraysOnHost remains constant, as it is not affected by the block size. The overall performance of the program is determined by the execution time of the kernel sumArraysOnGPU-timer, which can be optimized by experimenting with different block sizes.
